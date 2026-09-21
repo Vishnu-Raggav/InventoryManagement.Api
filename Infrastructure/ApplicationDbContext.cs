@@ -17,6 +17,10 @@ public class ApplicationDbContext : IdentityDbContext
         modelBuilder.Entity<Product>(entityBuilder =>
         {
             entityBuilder.HasKey(p => p.Id);
+
+            entityBuilder.Property(p => p.DeletedAt).HasDefaultValue(null);
+
+            entityBuilder.HasQueryFilter(p => p.DeletedAt == null);
         });
 
         modelBuilder.Entity<StockMovement>(entityBuilder =>

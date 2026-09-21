@@ -8,4 +8,5 @@ public class Product
     public double UnitPrice { get; set; }
     public int ReorderThreshold { get; set; }
     public int Quantity { get; set; }
+    public DateTime? DeletedAt { get; set; }
 }
