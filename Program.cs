@@ -1,11 +1,13 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Identity;
 using InventoryManagement.Api.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 var app = builder.Build();
 
