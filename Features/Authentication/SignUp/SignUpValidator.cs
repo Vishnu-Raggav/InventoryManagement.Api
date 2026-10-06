@@ -6,10 +6,10 @@ public class SignUpValidator: AbstractValidator<SignUpRequest>
 {
   public SignUpValidator()
   {
-    RuleFor(r => r.username).NotEmpty().Length(8, 50);
-    RuleFor(r => r.password).NotEmpty().Length(8, 50);
-    RuleFor(r => r.email).NotEmpty().EmailAddress();
-    RuleFor(r => r.role).NotEmpty().IsEnumName(typeof(Role));
+    RuleFor(r => r.Username).NotEmpty().Length(8, 50);
+    RuleFor(r => r.Password).NotEmpty().Length(8, 50);
+    RuleFor(r => r.Email).NotEmpty().EmailAddress();
+    RuleFor(r => r.Role).NotEmpty().IsEnumName(typeof(Role));
   }
 
   private enum Role
