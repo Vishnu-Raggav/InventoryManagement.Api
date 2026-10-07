@@ -21,6 +21,7 @@ public class SignUpEndpoint
       var user = await SignUpHandler.Handle(request, userManager);
 
       return Results.Ok<SignUpResponse>(user);
-    });
+    })
+    .RequireAuthorization("AdminOnly");
   }
 }
