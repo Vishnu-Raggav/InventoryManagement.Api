@@ -9,6 +9,15 @@ builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.P
 builder.Services.AddDbContext<ApplicationDbContext>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization(options =>
+    {
+      options.AddPolicy("AdminOnly", policy =>
+	  {
+	    policy.RequireRole("Admin");
+	  });
+    });
+
 var app = builder.Build();
 
 // Middleware
