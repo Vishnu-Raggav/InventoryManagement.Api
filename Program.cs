@@ -7,7 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Services
 builder.Services.ConfigureHttpJsonOptions(options => options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
 builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+    {
+      options.User.RequireUniqueEmail = true;
+    })
+  .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization(options =>
